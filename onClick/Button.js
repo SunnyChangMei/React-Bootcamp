@@ -9,7 +9,7 @@ export default class Button extends Component {
   }
   // use arrow function without using bind(this)
   handleClick = () => this.setState({ clicked: true });
-
+ 
   render() {
     return (
       <div>
