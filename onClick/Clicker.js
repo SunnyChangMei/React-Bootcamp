@@ -12,7 +12,7 @@ export default class Clicker extends Component {
 
   //! this.setState() is function()
   genRandom() {
-    let rand = Math.floor(Math.random() * 10) + 1;
+    const rand = Math.floor(Math.random() * 10) + 1;
     this.setState({
       num: rand
     });
