@@ -1,11 +1,10 @@
 /**
- * ! Poping pseudocode
- * 1. if there are no nodes in the list, return undefined
- * 2. Loop through the list until you reach the tail
- * 3. set the next property of the 2nd to last node to be null
- * 4. set the tail to be the 2nd to last node
- * 5. decrement the length of the list by 1
- * 6. return the value of the node removed
+ * ! Shifting pseudocode
+ * 1. if there are no nodes, return undefined
+ * 2. store the current head property in a variable
+ * 3. set the head property to be the current head's next property
+ * 4. decrement the length by 1
+ * 5. return the value of the node removed
  */
 
 class Node {
@@ -58,6 +57,17 @@ class SinglyLinkedList {
     }
     return current;
   }
+
+  shift() {
+    if (this.head) return undefined;
+    const currentHead = this.head;
+    this.head = currentHead.next;
+    this.length--;
+    if (this.length === 0) {
+      this.tail = null;
+    }
+    return currentHead;
+  }
 }
 
 const list = new SinglyLinkedList();
@@ -66,3 +76,4 @@ console.log(list.push('Hello'));
 console.log(list.push('Goodbye'));
 console.log(list.push('99'));
 console.log(list.pop());
+console.log(list.shift());
