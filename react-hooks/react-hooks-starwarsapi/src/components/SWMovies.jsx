@@ -1,19 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 
 const SWMovies = props => {
   const [number, setNumber] = useState(1);
+  const [movie, setMovie] = useState('');
 
   useEffect(() => {
-    effect
-    return () => {
-      cleanup
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `https://swapi.co/api/films/${number}`
+        );
+        const data = response.data;
+        console.log(data);
+        setMovie(data);
+      } catch (error) {
+        console.log(error);
+      }
     };
-  }, [input])
+    fetchData();
+  }, [number]);
 
   return (
     <div>
       <h1>Pick A Movie</h1>
-      <h4>You pick {number}</h4>
+      <h4>Movie Selected: {movie.title}</h4>
+      <h4>Producer: {movie.producer}</h4>
+
       <select value={number} onChange={e => setNumber(e.target.value)}>
         <option value="1">1</option>
         <option value="2">2</option>
