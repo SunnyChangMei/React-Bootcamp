@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Paper, AppBar, Toolbar, Typography } from '@material-ui/core';
+import { Paper, AppBar, Toolbar, Typography, Grid } from '@material-ui/core';
 import TodoList from './TodoList'
 import TodoForm from './TodoForm';
 
@@ -36,8 +36,12 @@ const TodoApp = () => {
           <Typography color="inherit">TODOS WITH HOOKS</Typography>
         </Toolbar>
       </AppBar>
-      <TodoForm addTodo={addTodo} />
-      <TodoList todos={todos} />
+      <Grid container justify='center' style={{marginTop: '1rem'}}>
+        <Grid item xs={11} md={8} lg={4}>
+          <TodoForm addTodo={addTodo} />
+          <TodoList todos={todos} />
+        </Grid>
+      </Grid>
     </Paper>
   );
 };
