@@ -5,13 +5,13 @@ import TodoForm from './TodoForm';
 import UUID from 'uuid/v4';
 
 const TodoApp = () => {
-  const initialTodos = [
-    { id: 1, task: 'Clean Fishtank', completed: false },
-    { id: 2, task: 'Wash Car', completed: true },
-    { id: 3, task: 'Coding', completed: false }
-  ];
+  const initialTodos = JSON.parse(window.localStorage.getItem('todos') || '[]');
 
   const [todos, setTodos] = useState(initialTodos);
+
+  useEffect(() => {
+    window.localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = newTodoText => {
     setTodos([...todos, { id: UUID(), task: newTodoText, completed: false }]);
@@ -26,7 +26,7 @@ const TodoApp = () => {
     const updatedTodo = todos.map(todo =>
       todo.id === todoId ? { ...todo, completed: !todo.completed } : todo
     );
-    setTodos(updatedTodo)
+    setTodos(updatedTodo);
   };
 
   // useEffect(() => {
@@ -51,7 +51,11 @@ const TodoApp = () => {
       <Grid container justify="center" style={{ marginTop: '1rem' }}>
         <Grid item xs={11} md={8} lg={4}>
           <TodoForm addTodo={addTodo} />
-          <TodoList todos={todos} removeTodo={removeTodo} toggleTodo={toggleTodo} />
+          <TodoList
+            todos={todos}
+            removeTodo={removeTodo}
+            toggleTodo={toggleTodo}
+          />
         </Grid>
       </Grid>
     </Paper>
