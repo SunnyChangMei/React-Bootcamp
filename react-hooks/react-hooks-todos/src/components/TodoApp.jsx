@@ -4,18 +4,23 @@ import TodoList from './TodoList'
 import TodoForm from './TodoForm';
 
 const TodoApp = () => {
+
   const initialTodos = [
     { id: 1, task: 'Clean Fishtank', completed: false },
-    { id: 2, task: 'Wash Car', completed: false },
+    { id: 2, task: 'Wash Car', completed: true },
     { id: 3, task: 'Coding', completed: false }
   ];
 
   const [todos, setTodos] = useState(initialTodos);
 
-  useEffect(() => {
-    setTodos(initialTodos)
+  const addTodo = newTodoText => {
+    setTodos([...todos, {id: 4, task: newTodoText, completed: false}])
+  }
 
-  }, [initialTodos])
+  // useEffect(() => {
+  //   setTodos(initialTodos)
+
+  // }, [initialTodos])
 
   return (
     <Paper
@@ -31,8 +36,8 @@ const TodoApp = () => {
           <Typography color="inherit">TODOS WITH HOOKS</Typography>
         </Toolbar>
       </AppBar>
+      <TodoForm addTodo={addTodo} />
       <TodoList todos={todos} />
-      <TodoForm />
     </Paper>
   );
 };
