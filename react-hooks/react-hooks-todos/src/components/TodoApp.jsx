@@ -17,6 +17,11 @@ const TodoApp = () => {
     setTodos([...todos, {id: 4, task: newTodoText, completed: false}])
   }
 
+  const removeTodo = todoId => {
+    const updatedTodo = todos.filter( todo => todo.id !== todoId)
+    setTodos(updatedTodo)
+  }
+
   // useEffect(() => {
   //   setTodos(initialTodos)
 
@@ -39,7 +44,7 @@ const TodoApp = () => {
       <Grid container justify='center' style={{marginTop: '1rem'}}>
         <Grid item xs={11} md={8} lg={4}>
           <TodoForm addTodo={addTodo} />
-          <TodoList todos={todos} />
+          <TodoList todos={todos} removeTodo={removeTodo} />
         </Grid>
       </Grid>
     </Paper>
