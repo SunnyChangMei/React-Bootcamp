@@ -9,9 +9,9 @@ import {
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 
-const Todo = ({ task, completed, removeTodo, id }) => (
+const Todo = ({ task, completed, removeTodo, id, toggleTodo }) => (
   <ListItem>
-    <Checkbox tabIndex={-1} check="completed" />
+    <Checkbox tabIndex={-1} check="completed" onClick={() => toggleTodo(id)} />
 
     <ListItemText
       style={{
@@ -23,7 +23,7 @@ const Todo = ({ task, completed, removeTodo, id }) => (
       <IconButton aria-label="Delete" onClick={() => removeTodo(id)}>
         <DeleteIcon />
       </IconButton>
-      <IconButton aria-label="Edit" onClick={() => removeTodo()}>
+      <IconButton aria-label="Edit">
         <EditIcon />
       </IconButton>
     </ListItemSecondaryAction>
